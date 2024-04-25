@@ -101,7 +101,7 @@ double get_value(char* identifier) {
     struct symbol* curr = head;
     while (curr != NULL) {
         if (strcmp(curr->identifier, identifier) == 0) {
-            return (double)curr->value;
+            return curr->value;
         }
         curr = curr->next;
     }
