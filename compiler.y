@@ -100,6 +100,7 @@ void update_table(char* id, double value) {
 double get_value(char* id) {
     struct symbol* curr = head;
     while (curr != NULL) {
+        printf("curr->identifier: %s   identifier:%s", curr->identifier, id);
         if (strcmp(curr->identifier, id) == 0) {
             return curr->value;
         }
