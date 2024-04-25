@@ -70,9 +70,8 @@ term: int_number                        {$$ = $1;}
 
 /*linked list helper functions*/
 void update_table(char* identifier, double value) {
-    struct symbol* curr = head;
+    struct symbol* curr = (struct symbol*)malloc(sizeof(struct symbol));;
     //checks if symbol table is empty
-    head = (struct symbol*)malloc(sizeof(struct symbol));
     if (head == NULL) {
         curr->identifier = strdup(identifier);
         curr->value = value;
