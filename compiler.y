@@ -10,8 +10,8 @@ int yyparse();
 int yylex();
 
 typedef struct symbol {
-    char* identifier;
-    double value;
+    char* identifier = NULL;
+    double value = 9;
     struct symbol* next;
 }symbol;
 struct symbol* head = NULL;
@@ -29,9 +29,9 @@ void print_result(double num);
 %type<id> assign
 %token<num> int_number float_number
 %token<id> identifier
-%right '+' '-' '*' '/' '^' '%'
-%right '(' ')'
-%left '='
+%left '+' '-' '*' '/' '^' '%'
+%left '(' ')'
+%right '='
 
 %%
 
