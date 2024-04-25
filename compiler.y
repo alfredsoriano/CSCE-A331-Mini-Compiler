@@ -13,8 +13,8 @@ typedef struct symbol {
     char* identifier;
     double value;
     struct symbol* next;
-} symbol_table;
-struct symbol_table* head = NULL;
+} symbol;
+struct symbol* head = NULL;
 void update_table(char* identifier, double value);
 double get_value(char* identifier);
 void print_result(double num);           
@@ -70,9 +70,9 @@ term: int_number                        {$$ = $1;}
 
 /*linked list helper functions*/
 void update_table(char* identifier, double value) {
-    struct symbol_table* curr = head;
+    struct symbol* curr = head;
     //checks if symbol table is empty
-    head = (struct symbol_table*)malloc(sizeof(struct symbol_table));
+    head = (struct symbol*)malloc(sizeof(struct symbol));
     if (head == NULL) {
         new_symbol->identifier = strdup(identifier);
         new_symbol->value = value;
@@ -90,7 +90,7 @@ void update_table(char* identifier, double value) {
     }
 
     //if symbol doesn't exist, creates a new symbol
-    struct symbol_table* new_symbol = (struct symbol_table*)malloc(sizeof(struct symbol_table));
+    struct symbol* new_symbol = (struct symbol*)malloc(sizeof(struct symbol));
     new_symbol->identifier = strdup(identifier);
     new_symbol->value = value;
     new_symbol->next = head;
@@ -99,7 +99,7 @@ void update_table(char* identifier, double value) {
 }
 
 double get_value(char* identifier) {
-    struct symbol_table* curr = head;
+    struct symbol* curr = head;
     while (curr != NULL) {
         if (strcmp(curr->identifier, identifier) == 0) {
             return curr->value;
@@ -118,14 +118,6 @@ void print_result(double num) {
 }
 
 int main() {
-    head = (struct symbol_table*)malloc(sizeof(struct symbol_table));
-    if (head == NULL) {
-        return;
-    }
-    head->identifier = "";
-    head->vlaue = 1;
-    head->next = NULL;
-
     yyparse();
     return 0;
 }
