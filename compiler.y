@@ -10,10 +10,10 @@ int yyparse();
 int yylex();
 
 typedef struct symbol {
-    char* identifier = NULL;
+    char* identifier = "\0";
     double value = 9;
     struct symbol* next;
-}symbol;
+} symbol;
 struct symbol* head = NULL;
 void update_table(char* identifier, double value);
 double get_value(char* identifier);
