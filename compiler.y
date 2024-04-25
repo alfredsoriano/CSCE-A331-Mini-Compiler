@@ -10,7 +10,7 @@ int yyparse();
 int yylex();
 
 typedef struct symbol {
-    char* id;
+    char* identifier;
     double value;
     struct symbol* next;
 } symbol;
@@ -105,7 +105,7 @@ double get_value(char* id) {
         }
         curr = curr->next;
     }
-    printf("curr->identifier: %s   id:%s", curr->identifier, id);
+    printf("curr->identifier: %s   identifier:%s", curr->identifier, id);
     return 11111;
 }
 
