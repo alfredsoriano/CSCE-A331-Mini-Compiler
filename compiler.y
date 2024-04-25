@@ -29,9 +29,9 @@ void print_result(double num);
 %type<id> assign
 %token<num> int_number float_number
 %token<id> identifier
-%left '+' '-' '*' '/' '^' '%'
-%left '(' ')'
-%right '='
+%right '+' '-' '*' '/' '^' '%'
+%right '(' ')'
+%left '='
 
 %%
 
