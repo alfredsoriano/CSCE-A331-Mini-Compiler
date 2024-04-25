@@ -105,6 +105,7 @@ double get_value(char* identifier) {
         }
         curr = curr->next;
     }
+    printf("curr->identifier: %s   identifier:%s", curr->identifier, identifier);
     return 11111;
 }
 
