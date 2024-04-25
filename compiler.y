@@ -101,10 +101,11 @@ double get_value(char* identifier) {
     struct symbol* curr = head;
     while (curr != NULL) {
         if (strcmp(curr->identifier, identifier) == 0) {
-            return curr->value;
+            return (double)curr->value;
         }
         curr = curr->next;
     }
+    return 11111;
 }
 
 void print_result(double num) {
