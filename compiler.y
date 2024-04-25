@@ -10,13 +10,13 @@ int yyparse();
 int yylex();
 
 typedef struct symbol {
-    char* identifier;
+    char* id;
     double value;
     struct symbol* next;
 } symbol;
 struct symbol* head = NULL;
-void update_table(char* identifier, double value);
-double get_value(char* identifier);
+void update_table(char* id, double value);
+double get_value(char* id);
 void print_result(double num);           
 %}
 
@@ -69,11 +69,11 @@ term: int_number                        {$$ = $1;}
 %%
 
 /*linked list helper functions*/
-void update_table(char* identifier, double value) {
+void update_table(char* id, double value) {
     struct symbol* curr = (struct symbol*)malloc(sizeof(struct symbol));;
     //checks if symbol table is empty
     if (head == NULL) {
-        curr->identifier = strdup(identifier);
+        curr->identifier = strdup(id);
         curr->value = value;
         curr->next = head;
         head = curr;
@@ -81,7 +81,7 @@ void update_table(char* identifier, double value) {
     else {
     //checks if symbol already in linked list
     while (curr != NULL) {
-        if (strcmp(curr->identifier, identifier) == 0) {
+        if (strcmp(curr->identifier, id) == 0) {
             curr->value = value;
             return;
         }
@@ -90,22 +90,22 @@ void update_table(char* identifier, double value) {
 
     //if symbol doesn't exist, creates a new symbol
     struct symbol* new_symbol = (struct symbol*)malloc(sizeof(struct symbol));
-    new_symbol->identifier = strdup(identifier);
+    new_symbol->identifier = strdup(id);
     new_symbol->value = value;
     new_symbol->next = head;
     head = new_symbol;
     }
 }
 
-double get_value(char* identifier) {
+double get_value(char* id) {
     struct symbol* curr = head;
     while (curr != NULL) {
-        if (strcmp(curr->identifier, identifier) == 0) {
+        if (strcmp(curr->identifier, id) == 0) {
             return curr->value;
         }
         curr = curr->next;
     }
-    printf("curr->identifier: %s   identifier:%s", curr->identifier, identifier);
+    printf("curr->identifier: %s   id:%s", curr->identifier, id);
     return 11111;
 }
 
