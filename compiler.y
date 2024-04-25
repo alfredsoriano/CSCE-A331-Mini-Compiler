@@ -47,16 +47,16 @@ statement: print expr ';'                {print_result($2);}
 expr: term                              {$$ = $1;}
     | '(' expr ')'                      {$$ = $2;}
     /*simple calculator functions*/
-    | expr '+' term                     {$$ = $1 + $3;}
-    | expr '-' term                     {$$ = $1 - $3;}
-    | expr '*' term                     {$$ = $1 * $3;}
-    | expr '/' term                     {if ($3 == 0) {yyerror("Cannot divide by 0.");} else {$$ = $1 / $3;}}
-    | expr '^' term                     {$$ = pow($1, $3);}
-    | expr '%' term                     {$$ = fmod($1, $3);}
+    | expr '+' expr                     {$$ = $1 + $3;}
+    | expr '-' expr                     {$$ = $1 - $3;}
+    | expr '*' expr                     {$$ = $1 * $3;}
+    | expr '/' expr                     {if ($3 == 0) {yyerror("Cannot divide by 0.");} else {$$ = $1 / $3;}}
+    | expr '^' expr                     {$$ = pow($1, $3);}
+    | expr '%' expr                     {$$ = fmod($1, $3);}
     /*trigonometry functions*/
-    | sine '(' term ')'                 {$$ = sin((double)$3);}
-    | cosine '(' term ')'               {$$ = cos((double)$3);}
-    | tangent '(' term ')'              {$$ = tan((double)$3);}
+    | sine '(' expr ')'                 {$$ = sin((double)$3);}
+    | cosine '(' expr ')'               {$$ = cos((double)$3);}
+    | tangent '(' expr ')'              {$$ = tan((double)$3);}
 ;
 
 assign: identifier '=' expr             {update_table($1, $3);}
