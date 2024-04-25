@@ -29,9 +29,9 @@ void print_result(double num);
 %type<id> assign
 %token<num> int_number float_number
 %token<id> identifier
-%right '+' '-' '*' '/' '^' '%'
-%right '(' ')'
-%left '='
+%left '+' '-' '*' '/' '^' '%'
+%left '(' ')'
+%right '='
 
 %%
 
@@ -73,7 +73,7 @@ void update_table(char* id, double value) {
     struct symbol* curr = (struct symbol*)malloc(sizeof(struct symbol));;
     //checks if symbol table is empty
     if (head == NULL) {
-        curr->identifier = strdup(id);
+        curr->identifier = id;
         curr->value = value;
         curr->next = head;
         head = curr;
@@ -90,7 +90,7 @@ void update_table(char* id, double value) {
 
     //if symbol doesn't exist, creates a new symbol
     struct symbol* new_symbol = (struct symbol*)malloc(sizeof(struct symbol));
-    new_symbol->identifier = strdup(id);
+    new_symbol->identifier = id;
     new_symbol->value = value;
     new_symbol->next = head;
     head = new_symbol;
