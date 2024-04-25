@@ -71,14 +71,6 @@ term: int_number                        {$$ = $1;}
 /*linked list helper functions*/
 void update_table(char* id, double value) {
     struct symbol* curr = (struct symbol*)malloc(sizeof(struct symbol));;
-    //checks if symbol table is empty
-    if (head == NULL) {
-        curr->identifier = id;
-        curr->value = value;
-        curr->next = head;
-        head = curr;
-    }
-    else {
     //checks if symbol already in linked list
     while (curr != NULL) {
         if (strcmp(curr->identifier, id) == 0) {
@@ -93,7 +85,6 @@ void update_table(char* id, double value) {
     curr->value = value;
     curr->next = head;
     head = curr;
-    }
 }
 
 double get_value(char* id) {
