@@ -74,10 +74,10 @@ void update_table(char* identifier, double value) {
     //checks if symbol table is empty
     head = (struct symbol*)malloc(sizeof(struct symbol));
     if (head == NULL) {
-        new_symbol->identifier = strdup(identifier);
-        new_symbol->value = value;
-        new_symbol->next = head;
-        head = new_symbol;
+        curr->identifier = strdup(identifier);
+        curr->value = value;
+        curr->next = head;
+        head = curr;
     }
     else {
     //checks if symbol already in linked list
